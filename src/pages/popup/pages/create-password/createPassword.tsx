@@ -6,7 +6,7 @@ import CustomTextInputComponent from "./passInput";
 import { Checkbox } from "@/components/ui/checkBox";
 import { ChevronLeftIcon } from "@radix-ui/react-icons";
 import HeaderLanding from "../../shared/Components/headerPassword";
-
+import { createStoredPassword } from "../../../../lib/utils";
 const CreatePassword: FC = () => {
   const { isPasswordValidated, isCheckboxChecked, setCheckboxChecked } =
     usePasswordStore();
@@ -18,7 +18,10 @@ const CreatePassword: FC = () => {
   const handleFormSubmit = () => {
     if (isPasswordValidated && isCheckboxChecked) {
       // Save the validated password to local storage
-      localStorage.setItem("userPassword", formData.password);
+      localStorage.setItem(
+        "userPassword",
+        JSON.stringify(createStoredPassword(formData.password))
+      );
 
       // Form submission was successful
       console.log("Form submitted successfully!");
