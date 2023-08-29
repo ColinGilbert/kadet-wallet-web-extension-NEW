@@ -151,21 +151,21 @@ const CustomTextInputComponent: React.FC<
     setConfirmPasswordError("");
   };
 
-  const onSubmit: SubmitHandler<IPass> = (data) => {
-    methods.trigger();
+  // const onSubmit: SubmitHandler<IPass> = (data) => {
+  //   methods.trigger();
 
-    if (methods.formState.isValid) {
-      if (data.password !== data.passwordConfirm) {
-        setPasswordError("Passwords do not match");
-        setConfirmPasswordError("Passwords do not match");
-        setIsPasswordValidated(false);
-      } else {
-        setPasswordError("");
-        setConfirmPasswordError("");
-        setIsPasswordValidated(true);
-      }
-    }
-  };
+  //   if (methods.formState.isValid) {
+  //     if (data.password !== data.passwordConfirm) {
+  //       setPasswordError("Passwords do not match");
+  //       setConfirmPasswordError("Passwords do not match");
+  //       setIsPasswordValidated(false);
+  //     } else {
+  //       setPasswordError("");
+  //       setConfirmPasswordError("");
+  //       setIsPasswordValidated(true);
+  //     }
+  //   }
+  // };
 
   const handleBlur = () => {
     methods.trigger();

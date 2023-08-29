@@ -8,7 +8,7 @@ export function cn(...inputs: ClassValue[]) {
 
 class StoredPassword {
   constructor(password: string) {
-    this.salt = makeid(24);
+    this.salt = makeid(32);
     this.hashed = hash(this.salt + password);
   }
   salt: string;
