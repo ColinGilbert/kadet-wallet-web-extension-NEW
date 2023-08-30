@@ -44,18 +44,9 @@ const correctList = [
 const shuffledList = shuffle(correctList);
 
 const SrpTest: React.FC = () => {
-  let enteredSrp = useSelector((state: RootState) => state.appState.enteredSrp);
-
-  const unsubscribe = store.subscribe(() => {
-    enteredSrp = store.getState().appState.enteredSrp;
-  });
   return (
     <DndProvider backend={HTML5Backend}>
-      <SrpTestImpl
-        shuffledList={shuffledList}
-        correctList={correctList}
-        enteredList={enteredSrp}
-      />
+      <SrpTestImpl shuffledList={shuffledList} correctList={correctList} />
     </DndProvider>
   );
 };

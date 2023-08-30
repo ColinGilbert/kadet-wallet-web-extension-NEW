@@ -8,12 +8,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState, store } from "@src/pages/Redux/store";
 import {
   changeEnteredSrp,
-  incrementEnteredSrpIndex,
+  resetEnteredSrpIndex,
 } from "@src/pages/Redux/AppStateSlice";
 interface SrpTestProps {
   shuffledList: string[];
   correctList: string[];
-  enteredSrp: string[];
 }
 
 const SrpTestImpl: React.FC<SrpTestProps> = ({ shuffledList, correctList }) => {
@@ -74,6 +73,7 @@ const SrpTestImpl: React.FC<SrpTestProps> = ({ shuffledList, correctList }) => {
           dispatch(
             changeEnteredSrp(["", "", "", "", "", "", "", "", "", "", "", ""])
           );
+          dispatch(resetEnteredSrpIndex());
         }}
       >
         Clear All

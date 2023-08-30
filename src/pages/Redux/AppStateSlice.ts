@@ -21,10 +21,16 @@ export const appStateSlice = createSlice({
     incrementEnteredSrpIndex: (state, action: PayloadAction<void>) => {
       state.enteredSrpIndex++;
     },
+    resetEnteredSrpIndex: (state, action: PayloadAction<void>) => {
+      state.enteredSrpIndex = 0;
+    },
   },
 });
 
-export const { changeEnteredSrp, incrementEnteredSrpIndex } =
-  appStateSlice.actions;
+export const {
+  changeEnteredSrp,
+  incrementEnteredSrpIndex,
+  resetEnteredSrpIndex,
+} = appStateSlice.actions;
 
 export default appStateSlice.reducer;
