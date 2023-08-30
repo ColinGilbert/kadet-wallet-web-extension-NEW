@@ -4,26 +4,28 @@ import { SrpOutBadge } from "./badgeOut";
 import { SrpInBadge } from "./badgeIn";
 import { Button } from "@/components/ui/button";
 import { useDrag } from "react-dnd";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { RootState, store } from "@src/pages/Redux/store";
-
+import {
+  changeEnteredSrp,
+  incrementEnteredSrpIndex,
+} from "@src/pages/Redux/AppStateSlice";
 interface SrpTestProps {
   shuffledList: string[];
   correctList: string[];
-  enteredList: string[];
+  enteredSrp: string[];
 }
 
-const SrpTestImpl: React.FC<SrpTestProps> = ({
-  shuffledList,
-  correctList,
-  enteredList,
-}) => {
+const SrpTestImpl: React.FC<SrpTestProps> = ({ shuffledList, correctList }) => {
   let enteredSrpIndex = useSelector(
     (state: RootState) => state.appState.enteredSrpIndex
   );
+  let enteredSrp = useSelector((state: RootState) => state.appState.enteredSrp);
   const unsubscribe = store.subscribe(() => {
     enteredSrpIndex = store.getState().appState.enteredSrpIndex;
+    enteredSrp = store.getState().appState.enteredSrp;
   });
+  const dispatch = useDispatch();
   return (
     <div className=" bg-[#101413] flex flex-col  w-full h-[600px]">
       <SrpHeader />
@@ -38,27 +40,27 @@ const SrpTestImpl: React.FC<SrpTestProps> = ({
       </div>
       <div className="flex flex-col w-[20.5rem] mx-4 mb-[3.3rem] gap-y-[1rem]">
         <div className="flex flex-row justify-center w-full gap-x-2 ">
-          <SrpOutBadge numberOf={1} text={enteredList[0]} />
-          <SrpOutBadge numberOf={2} text={enteredList[1]} />
-          <SrpOutBadge numberOf={3} text={enteredList[2]} />
+          <SrpOutBadge numberOf={1} text={enteredSrp[0]} />
+          <SrpOutBadge numberOf={2} text={enteredSrp[1]} />
+          <SrpOutBadge numberOf={3} text={enteredSrp[2]} />
         </div>
         <div className="z-0 flex flex-row justify-center mx-0 mt-0 gap-x-2 ">
-          <SrpOutBadge numberOf={4} text={enteredList[3]} />
-          <SrpOutBadge numberOf={5} text={enteredList[4]} />
+          <SrpOutBadge numberOf={4} text={enteredSrp[3]} />
+          <SrpOutBadge numberOf={5} text={enteredSrp[4]} />
 
-          <SrpOutBadge numberOf={6} text={enteredList[5]} />
+          <SrpOutBadge numberOf={6} text={enteredSrp[5]} />
         </div>
 
         <div className="flex flex-row justify-center mx-0 mt-0 gap-x-2 ">
-          <SrpOutBadge numberOf={7} text={enteredList[6]} />
-          <SrpOutBadge numberOf={8} text={enteredList[7]} />
-          <SrpOutBadge numberOf={9} text={enteredList[8]} />
+          <SrpOutBadge numberOf={7} text={enteredSrp[6]} />
+          <SrpOutBadge numberOf={8} text={enteredSrp[7]} />
+          <SrpOutBadge numberOf={9} text={enteredSrp[8]} />
         </div>
 
         <div className="flex flex-row items-center mx-0 mt-0 gap-x-2 ">
-          <SrpOutBadge numberOf={10} text={enteredList[9]} />
-          <SrpOutBadge numberOf={11} text={enteredList[10]} />
-          <SrpOutBadge numberOf={12} text={enteredList[11]} />
+          <SrpOutBadge numberOf={10} text={enteredSrp[9]} />
+          <SrpOutBadge numberOf={11} text={enteredSrp[10]} />
+          <SrpOutBadge numberOf={12} text={enteredSrp[11]} />
         </div>
       </div>
       <Button variant={"disabled"} size={"lg"} className="mx-4">
@@ -68,6 +70,11 @@ const SrpTestImpl: React.FC<SrpTestProps> = ({
         variant={"link"}
         size={"lg"}
         className="mx-4 text-[#FFFFFF] text-base "
+        onClick={() => {
+          dispatch(
+            changeEnteredSrp(["", "", "", "", "", "", "", "", "", "", "", ""])
+          );
+        }}
       >
         Clear All
       </Button>
