@@ -41,7 +41,7 @@ const correctList = [
   "body",
 ];
 
-const shuffledList = shuffle(correctList);
+const shuffledList = shuffle([...correctList]);
 
 const SrpTest: React.FC = () => {
   return (

@@ -19,14 +19,30 @@ const SrpTestImpl: React.FC<SrpTestProps> = ({ shuffledList, correctList }) => {
   let enteredSrpIndex = useSelector(
     (state: RootState) => state.appState.enteredSrpIndex
   );
+
   let enteredSrp = useSelector((state: RootState) => state.appState.enteredSrp);
+
   const unsubscribe = store.subscribe(() => {
     enteredSrpIndex = store.getState().appState.enteredSrpIndex;
     enteredSrp = store.getState().appState.enteredSrp;
   });
+
   const dispatch = useDispatch();
+
+  const [phrasesMatch, setPhrasesMatch] = React.useState(false);
+  console.log(phrasesMatch + " - " + correctList + " - " + enteredSrp);
+
+  React.useEffect(() => {
+    const compareArrays = (a: any[], b: any[]) => {
+      return (
+        a.length === b.length && a.every((elem, index) => elem === b[index])
+      );
+    };
+    setPhrasesMatch(compareArrays(correctList, enteredSrp));
+  }, [enteredSrp]);
+
   return (
-    <div className=" bg-[#101413] flex flex-col  w-full h-[600px]">
+    <div className="bg-[#101413] flex flex-col  w-full h-[600px]">
       <SrpHeader />
       <div className="text-2xl mx-4 font-sans font-semibold mb-[1.18rem] leading-[28px] text-[#fff] w-[20.5rem]">
         Reenter my SRP
@@ -62,7 +78,11 @@ const SrpTestImpl: React.FC<SrpTestProps> = ({ shuffledList, correctList }) => {
           <SrpOutBadge numberOf={12} text={enteredSrp[11]} />
         </div>
       </div>
-      <Button variant={"disabled"} size={"lg"} className="mx-4">
+      <Button
+        variant={phrasesMatch ? "default" : "disabled"}
+        size={"lg"}
+        className="mx-4"
+      >
         Continue
       </Button>
       <Button
