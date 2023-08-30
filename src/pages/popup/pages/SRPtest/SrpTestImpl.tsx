@@ -4,25 +4,18 @@ import { SrpOutBadge } from "./badgeOut";
 import { SrpInBadge } from "./badgeIn";
 import { Button } from "@/components/ui/button";
 import { useDrag } from "react-dnd";
+
 interface SrpTestProps {
   shuffledList: string[];
   correctList: string[];
+  enteredList: string[];
 }
-const SrpTestImpl: React.FC<SrpTestProps> = ({ shuffledList, correctList }) => {
-  const [values, setValues] = React.useState([
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-  ]);
+
+const SrpTestImpl: React.FC<SrpTestProps> = ({
+  shuffledList,
+  correctList,
+  enteredList,
+}) => {
   return (
     <div className=" bg-[#101413] flex flex-col  w-full h-[600px]">
       <SrpHeader />
@@ -37,27 +30,27 @@ const SrpTestImpl: React.FC<SrpTestProps> = ({ shuffledList, correctList }) => {
       </div>
       <div className="flex flex-col w-[20.5rem] mx-4 mb-[3.3rem] gap-y-[1rem]">
         <div className="flex flex-row justify-center w-full gap-x-2 ">
-          <SrpOutBadge number={1} text={values[0]} />
-          <SrpOutBadge number={2} text={values[1]} />
-          <SrpOutBadge number={3} text={values[2]} />
+          <SrpOutBadge numberOf={1} text={enteredList[0]} />
+          <SrpOutBadge numberOf={2} text={enteredList[1]} />
+          <SrpOutBadge numberOf={3} text={enteredList[2]} />
         </div>
         <div className="z-0 flex flex-row justify-center mx-0 mt-0 gap-x-2 ">
-          <SrpOutBadge number={4} text={values[3]} />
-          <SrpOutBadge number={5} text={values[4]} />
+          <SrpOutBadge numberOf={4} text={enteredList[3]} />
+          <SrpOutBadge numberOf={5} text={enteredList[4]} />
 
-          <SrpOutBadge number={6} text={values[5]} />
+          <SrpOutBadge numberOf={6} text={enteredList[5]} />
         </div>
 
         <div className="flex flex-row justify-center mx-0 mt-0 gap-x-2 ">
-          <SrpOutBadge number={7} text={values[6]} />
-          <SrpOutBadge number={8} text={values[7]} />
-          <SrpOutBadge number={9} text={values[8]} />
+          <SrpOutBadge numberOf={7} text={enteredList[6]} />
+          <SrpOutBadge numberOf={8} text={enteredList[7]} />
+          <SrpOutBadge numberOf={9} text={enteredList[8]} />
         </div>
 
         <div className="flex flex-row items-center mx-0 mt-0 gap-x-2 ">
-          <SrpOutBadge number={10} text={values[9]} />
-          <SrpOutBadge number={11} text={values[10]} />
-          <SrpOutBadge number={12} text={values[11]} />
+          <SrpOutBadge numberOf={10} text={enteredList[9]} />
+          <SrpOutBadge numberOf={11} text={enteredList[10]} />
+          <SrpOutBadge numberOf={12} text={enteredList[11]} />
         </div>
       </div>
       <Button variant={"disabled"} size={"lg"} className="mx-4">

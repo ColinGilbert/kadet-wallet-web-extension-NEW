@@ -9,6 +9,7 @@ interface Wallet {
   secretKey: string;
   wallets: RawWallet[];
   connectedSites: string[];
+  correctSrp: string[];
 }
 
 interface RawNetwork {
@@ -30,13 +31,14 @@ interface RawExtension {
   networks: RawNetwork[];
   isHaveSeedPhrase: boolean;
   isCreateSeedPhrase: boolean;
-  activeTab: string;
+  //activeTab: string;
 }
 
 interface RootState {
   wallet: Wallet;
   extensions: RawExtension;
   auth: any; // Replace with the actual auth state type
+  enteredSrp: string[];
 }
 
 const selectedNetwork: RawNetwork = {
@@ -85,7 +87,27 @@ const useStore = create<RootState>((set) => ({
     secretKey: "",
     wallets: [],
     connectedSites: [],
+    correctSrp: [
+      "father",
+      "monkey",
+      "building",
+      "seed",
+      "mother",
+      "hat",
+      "dodge",
+      "him",
+      "market",
+      "show",
+      "dad",
+      "body",
+    ],
   },
+  enteredSrp: ["", "", "", "", "", "", "", "", "", "", "", ""],
+  resetEnteredSrp: () =>
+    set(() => ({
+      enteredSrp: ["", "", "", "", "", "", "", "", "", "", "", ""],
+    })),
+
   extensions: {
     passwordHash: "",
     isFetching: true,
@@ -96,7 +118,7 @@ const useStore = create<RootState>((set) => ({
     networks: defaultNetworks,
     isHaveSeedPhrase: false,
     isCreateSeedPhrase: false,
-    activeTab: ACTIVE_TAB.HOME,
+    //activeTab: ACTIVE_TAB.HOME,
   },
   auth: {}, // Replace with the actual initial auth state
 }));

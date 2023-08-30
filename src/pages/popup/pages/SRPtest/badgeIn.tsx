@@ -1,6 +1,10 @@
 import React from "react";
 import { useDrag } from "react-dnd";
 import { ItemTypes } from "./ItemTypes";
+import { useSelector, useDispatch } from "react-redux";
+import { changeEnteredSrp } from "@src/pages/Redux/AppStateSlice";
+import { RootState } from "@src/pages/Redux/store";
+import { store } from "@src/pages/Redux/store";
 
 interface SrpTestBadgeProps {
   phrase: string;
@@ -10,15 +14,27 @@ interface DropResult {
 }
 
 const SrpInBadge: React.FC<SrpTestBadgeProps> = ({ phrase }) => {
+  let enteredSrp = useSelector((state: RootState) => state.appState.enteredSrp);
+  const unsubscribe = store.subscribe(
+    () => (enteredSrp = store.getState().appState.enteredSrp)
+  );
+  const dispatch = useDispatch();
   const [collected, drag, dragPreview] = useDrag(() => ({
     type: ItemTypes.BADGE_IN,
     item: { phrase },
     end: (item, monitor) => {
       const dropResult = monitor.getDropResult<DropResult>();
       if (item && dropResult) {
-        alert(`You dropped ${item.phrase} into ${dropResult.num}`);
+        const newSrp = [...enteredSrp];
+        // TODO: Add word to array
+        newSrp[dropResult.num - 1] = item.phrase;
+        dispatch(changeEnteredSrp(newSrp));
       }
     },
+    collect: (monitor) => ({
+      isDragging: monitor.isDragging(),
+      handlerId: monitor.getHandlerId(),
+    }),
   }));
   return (
     <div
