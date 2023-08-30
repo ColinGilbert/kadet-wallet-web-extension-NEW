@@ -4,6 +4,8 @@ import { SrpOutBadge } from "./badgeOut";
 import { SrpInBadge } from "./badgeIn";
 import { Button } from "@/components/ui/button";
 import { useDrag } from "react-dnd";
+import { useSelector } from "react-redux";
+import { RootState, store } from "@src/pages/Redux/store";
 
 interface SrpTestProps {
   shuffledList: string[];
@@ -16,6 +18,12 @@ const SrpTestImpl: React.FC<SrpTestProps> = ({
   correctList,
   enteredList,
 }) => {
+  let enteredSrpIndex = useSelector(
+    (state: RootState) => state.appState.enteredSrpIndex
+  );
+  const unsubscribe = store.subscribe(() => {
+    enteredSrpIndex = store.getState().appState.enteredSrpIndex;
+  });
   return (
     <div className=" bg-[#101413] flex flex-col  w-full h-[600px]">
       <SrpHeader />
@@ -26,7 +34,7 @@ const SrpTestImpl: React.FC<SrpTestProps> = ({
         Place the highlighted word into the correct box.
       </div>
       <div className="flex flex-col self-center  justify-center mb-[1.12rem] justify-self-center">
-        <SrpInBadge phrase="mother" />
+        <SrpInBadge phrase={shuffledList[enteredSrpIndex]} />
       </div>
       <div className="flex flex-col w-[20.5rem] mx-4 mb-[3.3rem] gap-y-[1rem]">
         <div className="flex flex-row justify-center w-full gap-x-2 ">

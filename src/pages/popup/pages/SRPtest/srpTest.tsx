@@ -4,6 +4,8 @@ import SrpTestImpl from "./SrpTestImpl";
 import { RootState } from "@src/pages/Redux/store";
 import { useSelector } from "react-redux";
 import { store } from "@src/pages/Redux/store";
+import { incrementEnteredSrpIndex } from "@src/pages/Redux/AppStateSlice";
+
 function shuffle(array: any[]) {
   let currentIndex = array.length,
     randomIndex;
@@ -43,9 +45,10 @@ const shuffledList = shuffle(correctList);
 
 const SrpTest: React.FC = () => {
   let enteredSrp = useSelector((state: RootState) => state.appState.enteredSrp);
-  const unsubscribe = store.subscribe(
-    () => (enteredSrp = store.getState().appState.enteredSrp)
-  );
+
+  const unsubscribe = store.subscribe(() => {
+    enteredSrp = store.getState().appState.enteredSrp;
+  });
   return (
     <DndProvider backend={HTML5Backend}>
       <SrpTestImpl

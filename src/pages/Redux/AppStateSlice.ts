@@ -3,10 +3,12 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 
 export interface AppState {
   enteredSrp: string[];
+  enteredSrpIndex: number;
 }
 
 const initialState: AppState = {
   enteredSrp: ["", "", "", "", "", "", "", "", "", "", "", ""],
+  enteredSrpIndex: 0,
 };
 
 export const appStateSlice = createSlice({
@@ -16,9 +18,13 @@ export const appStateSlice = createSlice({
     changeEnteredSrp: (state, action: PayloadAction<string[]>) => {
       state.enteredSrp = action.payload;
     },
+    incrementEnteredSrpIndex: (state, action: PayloadAction<void>) => {
+      state.enteredSrpIndex++;
+    },
   },
 });
 
-export const { changeEnteredSrp } = appStateSlice.actions;
+export const { changeEnteredSrp, incrementEnteredSrpIndex } =
+  appStateSlice.actions;
 
 export default appStateSlice.reducer;
