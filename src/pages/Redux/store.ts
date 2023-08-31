@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import AppStateSliceReducer from "./AppStateSlice";
+import SrpStateSliceReducer from "./SrpStateSlice";
+import PasswordStateSliceReducer from "./PasswordStateSlice";
 
 export const store = configureStore({
   reducer: {
-    appState: AppStateSliceReducer,
+    srpState: SrpStateSliceReducer,
+    passwordState: PasswordStateSliceReducer,
   },
 });
 

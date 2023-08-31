@@ -42,7 +42,7 @@ const CreatePassword: FC = () => {
 
       <div className="flex flex-row items-center justify-start gap-2 mb-20 ml-6 mr-24">
         <Checkbox
-          onCheckedChange={(e: any) => setCheckboxChecked(e)} // Update the state when the checkbox value changes
+          onCheckedChange={(e: boolean) => setCheckboxChecked(e)} // Update the state when the checkbox value changes
           checked={isCheckboxChecked} // Set the checkbox value to the state
           className="shadow-[inset_0px_1px_1px_-1px_rgba(74,_74,_104,_0.1)] bg-[#f4f2ee] w-4 shrink-0 h-4 rounded"
         />

@@ -1,10 +1,10 @@
-import { DndProvider } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
-import SrpTestImpl from "./SrpTestImpl";
-import { RootState } from "@src/pages/Redux/store";
-import { useSelector } from "react-redux";
-import { store } from "@src/pages/Redux/store";
-import { incrementEnteredSrpIndex } from "@src/pages/Redux/AppStateSlice";
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
+import SrpTestImpl from './SrpTestImpl';
+import { RootState } from '@src/pages/Redux/store';
+import { useSelector } from 'react-redux';
+import { store } from '@src/pages/Redux/store';
+import { incrementEnteredSrpIndex } from '@src/pages/Redux/SrpStateSlice';
 
 function shuffle(array: any[]) {
   let currentIndex = array.length,
@@ -26,27 +26,15 @@ function shuffle(array: any[]) {
   return array;
 }
 
-const correctList = [
-  "father",
-  "monkey",
-  "building",
-  "seed",
-  "mother",
-  "hat",
-  "dodge",
-  "him",
-  "market",
-  "show",
-  "dad",
-  "body",
-];
-
-const shuffledList = shuffle([...correctList]);
-
 const SrpTest: React.FC = () => {
+  const correctSrp = useSelector(
+    (state: RootState) => state.srpState.correctSrp
+  );
+  const shuffledList = shuffle([...correctSrp]);
+
   return (
     <DndProvider backend={HTML5Backend}>
-      <SrpTestImpl shuffledList={shuffledList} correctList={correctList} />
+      <SrpTestImpl shuffledList={shuffledList} correctList={correctSrp} />
     </DndProvider>
   );
 };

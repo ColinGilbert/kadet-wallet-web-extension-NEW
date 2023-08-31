@@ -9,7 +9,7 @@ import { RootState, store } from "@src/pages/Redux/store";
 import {
   changeEnteredSrp,
   resetEnteredSrpIndex,
-} from "@src/pages/Redux/AppStateSlice";
+} from "@src/pages/Redux/SrpStateSlice";
 interface SrpTestProps {
   shuffledList: string[];
   correctList: string[];
@@ -17,14 +17,13 @@ interface SrpTestProps {
 
 const SrpTestImpl: React.FC<SrpTestProps> = ({ shuffledList, correctList }) => {
   let enteredSrpIndex = useSelector(
-    (state: RootState) => state.appState.enteredSrpIndex
+    (state: RootState) => state.srpState.enteredSrpIndex
   );
-
-  let enteredSrp = useSelector((state: RootState) => state.appState.enteredSrp);
+  let enteredSrp = useSelector((state: RootState) => state.srpState.enteredSrp);
 
   const unsubscribe = store.subscribe(() => {
-    enteredSrpIndex = store.getState().appState.enteredSrpIndex;
-    enteredSrp = store.getState().appState.enteredSrp;
+    enteredSrpIndex = store.getState().srpState.enteredSrpIndex;
+    enteredSrp = store.getState().srpState.enteredSrp;
   });
 
   const dispatch = useDispatch();

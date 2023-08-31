@@ -189,7 +189,7 @@ const CustomTextInputComponent: React.FC<
       } else {
         setPasswordError("");
         setErrorMessage("Minimum 8 characters");
-        setIsPasswordValidated(true);
+        setIsPasswordValidated(false);
       }
     }
   };
@@ -198,7 +198,7 @@ const CustomTextInputComponent: React.FC<
     handleBlur();
     if (methods.getValues().password !== methods.getValues().passwordConfirm) {
       setConfirmPasswordError("Passwords do not match");
-      setIsPasswordValidated(true);
+      setIsPasswordValidated(false);
     } else {
       setConfirmPasswordError("");
       setIsPasswordValidated(true);
@@ -325,7 +325,7 @@ const CustomTextInputComponent: React.FC<
               methods.setValue("passwordConfirm", e.target.value);
               methods.trigger("passwordConfirm");
             }}
-            disabled={!isPasswordValidated} // Disable initially
+            //disabled={!isPasswordValidated} // Disable initially
             onBlur={handleBlur} // Add onBlur event handler
             onFocus={handleFocus}
             error={!!confirmPasswordError}

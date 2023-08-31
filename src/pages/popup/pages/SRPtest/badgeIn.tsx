@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   changeEnteredSrp,
   incrementEnteredSrpIndex,
-} from "@src/pages/Redux/AppStateSlice";
+} from "@src/pages/Redux/SrpStateSlice";
 import { RootState } from "@src/pages/Redux/store";
 import { store } from "@src/pages/Redux/store";
 
@@ -17,9 +17,9 @@ interface DropResult {
 }
 
 const SrpInBadge: React.FC<SrpTestBadgeProps> = ({ phrase }) => {
-  let enteredSrp = useSelector((state: RootState) => state.appState.enteredSrp);
+  let enteredSrp = useSelector((state: RootState) => state.srpState.enteredSrp);
   const unsubscribe = store.subscribe(() => {
-    enteredSrp = store.getState().appState.enteredSrp;
+    enteredSrp = store.getState().srpState.enteredSrp;
   });
   const dispatch = useDispatch();
   const [collected, drag, dragPreview] = useDrag(

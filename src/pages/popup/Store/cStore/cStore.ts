@@ -9,7 +9,6 @@ interface Wallet {
   secretKey: string;
   wallets: RawWallet[];
   connectedSites: string[];
-  correctSrp: string[];
 }
 
 interface RawNetwork {
@@ -38,7 +37,6 @@ interface RootState {
   wallet: Wallet;
   extensions: RawExtension;
   auth: any; // Replace with the actual auth state type
-  enteredSrp: string[];
 }
 
 const selectedNetwork: RawNetwork = {
@@ -102,11 +100,6 @@ const useStore = create<RootState>((set) => ({
       "body",
     ],
   },
-  enteredSrp: ["", "", "", "", "", "", "", "", "", "", "", ""],
-  resetEnteredSrp: () =>
-    set(() => ({
-      enteredSrp: ["", "", "", "", "", "", "", "", "", "", "", ""],
-    })),
 
   extensions: {
     passwordHash: "",

@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 
 interface SrpBadgeProps {
-  number: string;
+  number: number;
   phrase: string;
-  Border: boolean | "border-[#9aeca4]" | "border-white";
+  Border: boolean | 'border-[#9aeca4]' | 'border-white';
   blurSm?: boolean;
 }
 
@@ -13,8 +13,8 @@ const SrpBadge: React.FC<SrpBadgeProps> = ({
   Border = false,
   blurSm = true,
 }) => {
-  const borderColor = Border ? "border-white" : "border-[#9aeca4]";
-  const blurClass = blurSm ? "blur-sm" : "";
+  const borderColor = Border ? 'border-white' : 'border-[#9aeca4]';
+  const blurClass = blurSm ? 'blur-sm' : '';
 
   return (
     <div
@@ -24,7 +24,7 @@ const SrpBadge: React.FC<SrpBadgeProps> = ({
         className={`flex flex-row  pl-2 pr-[1.62rem] py-[0.62rem] items-center ${blurClass}`}
       >
         <div className="text-sm font-semibold text-[#9aeca4] pr-[0.25rem]">
-          {number}
+          {`${number}. `}
         </div>
         <div className="text-sm font-medium text-white">{phrase}</div>
       </div>
