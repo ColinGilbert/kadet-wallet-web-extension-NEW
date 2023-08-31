@@ -13,10 +13,19 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@src/pages/popup/pages/SRP/alertDialog';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { RootState, store } from '@src/pages/Redux/store';
+import { createRandomMnemonic } from '../../../../../utils/keys';
+import { changeCorrectSrp } from '@src/pages/Redux/SrpStateSlice';
 
 const Srp: React.FC = () => {
+  const dispatch = useDispatch();
+  React.useEffect(() => {
+    const mnemonic = createRandomMnemonic().split(' ');
+    console.log(mnemonic);
+    dispatch(changeCorrectSrp(mnemonic));
+  }, [dispatch]);
+
   let correctSrp = useSelector((state: RootState) => state.srpState.correctSrp);
   const [Hide, setHide] = useState(false);
 

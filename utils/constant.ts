@@ -5,9 +5,9 @@ export const OptionSelect = {
   ViewExplorer: 1,
   ExportPrivateKey: 2,
   RemoveWallet: 3,
+  Close: 4,
   FinishTransfer: 5,
   DetailTrans: 6,
-  Close: 4,
 };
 
 export const BUTTON_SIZE = {

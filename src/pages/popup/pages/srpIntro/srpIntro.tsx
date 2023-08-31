@@ -1,15 +1,20 @@
-import React, { useState } from "react";
-import SrpHeader from "../SRP/headerSrp";
-import { Checkbox } from "@/components/ui/checkBox";
-import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-
+import React, { useState } from 'react';
+import SrpHeader from '../SRP/headerSrp';
+import { Checkbox } from '@/components/ui/checkBox';
+import { Link } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '@src/pages/Redux/store';
+import { createRandomMnemonic } from '../../../../../utils/keys';
+import { changeCorrectSrp } from '@src/pages/Redux/SrpStateSlice';
 const SrpIntro: React.FC = () => {
   const [isCheckboxChecked, setIsCheckboxChecked] = useState(false);
 
   const handleCheckboxChange = (isChecked: boolean) => {
     setIsCheckboxChecked(isChecked);
   };
+
+  // let correctSrp = useSelector((state: RootState) => state.srpState.correctSrp);
 
   return (
     <div className="overflow-hidden bg-[#101413] flex flex-col  w-full  h-[600px]">
@@ -26,7 +31,7 @@ const SrpIntro: React.FC = () => {
             onCheckedChange={handleCheckboxChange}
             className="  shadow-[inset_0px_1px_1px_-1px_rgba(74,_74,_104,_0.1)] bg-[#f4f2ee]  shrink-0 h-4 rounded"
           />
-        </div>{" "}
+        </div>{' '}
         <div className="  text-base font-normal  font-sans	leading-6	 tracking-[0.5] 	text-[#FFFFFF] w-64 ">
           I understand that if I lose my Secret Recovery Phrase, I will
           <strong> never </strong>
@@ -39,8 +44,8 @@ const SrpIntro: React.FC = () => {
           // className="flex flex-col justify-center w-full "
         >
           <Button
-            variant={isCheckboxChecked ? "default" : "disabled"}
-            size={"lg"}
+            variant={isCheckboxChecked ? 'default' : 'disabled'}
+            size={'lg'}
           >
             Next
           </Button>
@@ -52,7 +57,7 @@ const SrpIntro: React.FC = () => {
         >
           <Button
             variant="link"
-            size={"default"}
+            size={'default'}
             className="whitespace-nowrap text-base font-medium leading-[20px] text-[#86d992] "
           >
             What is SRP?

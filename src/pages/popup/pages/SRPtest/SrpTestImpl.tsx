@@ -1,15 +1,15 @@
-import React from "react";
-import { SrpHeader } from "@src/pages/popup/pages/SRP/headerSrp";
-import { SrpOutBadge } from "./badgeOut";
-import { SrpInBadge } from "./badgeIn";
-import { Button } from "@/components/ui/button";
-import { useDrag } from "react-dnd";
-import { useSelector, useDispatch } from "react-redux";
-import { RootState, store } from "@src/pages/Redux/store";
+import React from 'react';
+import { SrpHeader } from '@src/pages/popup/pages/SRP/headerSrp';
+import { SrpOutBadge } from './badgeOut';
+import { SrpInBadge } from './badgeIn';
+import { Button } from '@/components/ui/button';
+import { useDrag } from 'react-dnd';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState, store } from '@src/pages/Redux/store';
 import {
   changeEnteredSrp,
   resetEnteredSrpIndex,
-} from "@src/pages/Redux/SrpStateSlice";
+} from '@src/pages/Redux/SrpStateSlice';
 interface SrpTestProps {
   shuffledList: string[];
   correctList: string[];
@@ -29,7 +29,7 @@ const SrpTestImpl: React.FC<SrpTestProps> = ({ shuffledList, correctList }) => {
   const dispatch = useDispatch();
 
   const [phrasesMatch, setPhrasesMatch] = React.useState(false);
-  console.log(phrasesMatch + " - " + correctList + " - " + enteredSrp);
+  //console.log(phrasesMatch + " - " + correctList + " - " + enteredSrp);
 
   React.useEffect(() => {
     const compareArrays = (a: any[], b: any[]) => {
@@ -78,19 +78,19 @@ const SrpTestImpl: React.FC<SrpTestProps> = ({ shuffledList, correctList }) => {
         </div>
       </div>
       <Button
-        variant={phrasesMatch ? "default" : "disabled"}
-        size={"lg"}
+        variant={phrasesMatch ? 'default' : 'disabled'}
+        size={'lg'}
         className="mx-4"
       >
         Continue
       </Button>
       <Button
-        variant={"link"}
-        size={"lg"}
+        variant={'link'}
+        size={'lg'}
         className="mx-4 text-[#FFFFFF] text-base "
         onClick={() => {
           dispatch(
-            changeEnteredSrp(["", "", "", "", "", "", "", "", "", "", "", ""])
+            changeEnteredSrp(['', '', '', '', '', '', '', '', '', '', '', ''])
           );
           dispatch(resetEnteredSrpIndex());
         }}
