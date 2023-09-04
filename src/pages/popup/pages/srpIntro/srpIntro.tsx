@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '@src/pages/Redux/store';
-import { createRandomMnemonic } from '../../../../../utils/keys';
-import { changeCorrectSrp } from '@src/pages/Redux/SrpStateSlice';
+import { createRandomMnemonic } from '../../../../lib/keys';
+import { setCorrectSrp } from '@src/pages/Redux/SrpStateSlice';
 const SrpIntro: React.FC = () => {
   const [isCheckboxChecked, setIsCheckboxChecked] = useState(false);
 

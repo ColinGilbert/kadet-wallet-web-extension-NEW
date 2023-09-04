@@ -1,4 +1,4 @@
-import { create } from "zustand";
+import { create } from 'zustand';
 
 interface Wallet {
   chainId: string | number;
@@ -40,69 +40,55 @@ interface RootState {
 }
 
 const selectedNetwork: RawNetwork = {
-  name: "Mainnet",
-  url: "https://chainweb.kaddex.com",
-  explorer: "https://explorer.chainweb.com/mainnet",
-  networkId: "mainnet01",
+  name: 'Mainnet',
+  url: 'https://chainweb.kaddex.com',
+  explorer: 'https://explorer.chainweb.com/mainnet',
+  networkId: 'mainnet01',
   isDefault: true,
-  id: "0",
+  id: '0',
 };
 
 const defaultNetworks: RawNetwork[] = [
   {
-    name: "Mainnet",
-    url: "https://chainweb.kaddex.com",
-    explorer: "https://explorer.chainweb.com/mainnet",
-    networkId: "mainnet01",
+    name: 'Mainnet',
+    url: 'https://chainweb.kaddex.com',
+    explorer: 'https://explorer.chainweb.com/mainnet',
+    networkId: 'mainnet01',
     isDefault: true,
-    id: "0",
+    id: '0',
   },
   {
-    name: "Testnet",
-    url: "https://api.testnet.chainweb.com",
-    explorer: "https://explorer.chainweb.com/testnet",
-    networkId: "testnet04",
+    name: 'Testnet',
+    url: 'https://api.testnet.chainweb.com',
+    explorer: 'https://explorer.chainweb.com/testnet',
+    networkId: 'testnet04',
     isDefault: true,
-    id: "1",
+    id: '1',
   },
   {
-    name: "Ecko Devnet",
-    url: "https://devnet.ecko.finance",
-    explorer: "https://explorer.chainweb.com/testnet",
-    networkId: "development",
+    name: 'Ecko Devnet',
+    url: 'https://devnet.ecko.finance',
+    explorer: 'https://explorer.chainweb.com/testnet',
+    networkId: 'development',
     isDefault: true,
-    id: "101",
+    id: '101',
   },
 ];
 
 const useStore = create<RootState>((set) => ({
   wallet: {
-    chainId: "0",
+    chainId: '0',
     balance: 0,
-    account: "",
-    alias: "",
-    publicKey: "",
-    secretKey: "",
+    account: '',
+    alias: '',
+    publicKey: '',
+    secretKey: '',
     wallets: [],
     connectedSites: [],
-    correctSrp: [
-      "father",
-      "monkey",
-      "building",
-      "seed",
-      "mother",
-      "hat",
-      "dodge",
-      "him",
-      "market",
-      "show",
-      "dad",
-      "body",
-    ],
   },
 
   extensions: {
-    passwordHash: "",
+    passwordHash: '',
     isFetching: true,
     isLoading: false,
     contacts: [],

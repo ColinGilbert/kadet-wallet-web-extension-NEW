@@ -15,15 +15,15 @@ import {
 } from '@src/pages/popup/pages/SRP/alertDialog';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState, store } from '@src/pages/Redux/store';
-import { createRandomMnemonic } from '../../../../../utils/keys';
-import { changeCorrectSrp } from '@src/pages/Redux/SrpStateSlice';
+import { createRandomMnemonic } from '@src/lib/keys';
+import { setCorrectSrp } from '@src/pages/Redux/SrpStateSlice';
 
 const Srp: React.FC = () => {
   const dispatch = useDispatch();
   React.useEffect(() => {
     const mnemonic = createRandomMnemonic().split(' ');
     console.log(mnemonic);
-    dispatch(changeCorrectSrp(mnemonic));
+    dispatch(setCorrectSrp(mnemonic));
   }, [dispatch]);
 
   let correctSrp = useSelector((state: RootState) => state.srpState.correctSrp);

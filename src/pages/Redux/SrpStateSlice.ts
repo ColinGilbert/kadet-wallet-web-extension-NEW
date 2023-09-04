@@ -32,27 +32,26 @@ export const srpStateSlice = createSlice({
   name: 'SrpState',
   initialState,
   reducers: {
-    changeEnteredSrp: (state, action: PayloadAction<string[]>) => {
+    setEnteredSrp: (state, action: PayloadAction<string[]>) => {
       state.enteredSrp = action.payload;
     },
-
     incrementEnteredSrpIndex: (state, action: PayloadAction<void>) => {
       state.enteredSrpIndex++;
     },
     resetEnteredSrpIndex: (state, action: PayloadAction<void>) => {
       state.enteredSrpIndex = 0;
     },
-    changeCorrectSrp: (state, action: PayloadAction<string[]>) => {
+    setCorrectSrp: (state, action: PayloadAction<string[]>) => {
       state.correctSrp = action.payload;
     },
   },
 });
 
 export const {
-  changeEnteredSrp,
+  setEnteredSrp,
   incrementEnteredSrpIndex,
   resetEnteredSrpIndex,
-  changeCorrectSrp,
+  setCorrectSrp,
 } = srpStateSlice.actions;
 
 export default srpStateSlice.reducer;

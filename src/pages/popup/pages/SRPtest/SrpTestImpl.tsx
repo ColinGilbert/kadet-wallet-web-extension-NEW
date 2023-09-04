@@ -1,14 +1,15 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { SrpHeader } from '@src/pages/popup/pages/SRP/headerSrp';
 import { SrpOutBadge } from './badgeOut';
 import { SrpInBadge } from './badgeIn';
 import { Button } from '@/components/ui/button';
-import { useDrag } from 'react-dnd';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState, store } from '@src/pages/Redux/store';
 import {
-  changeEnteredSrp,
+  setEnteredSrp,
   resetEnteredSrpIndex,
+  setCorrectSrp,
 } from '@src/pages/Redux/SrpStateSlice';
 interface SrpTestProps {
   shuffledList: string[];
@@ -27,6 +28,16 @@ const SrpTestImpl: React.FC<SrpTestProps> = ({ shuffledList, correctList }) => {
   });
 
   const dispatch = useDispatch();
+
+  const setSrp = () => {
+    dispatch(setCorrectSrp(enteredSrp));
+    dispatch(resetEnteredSrpIndex());
+  };
+
+  const resetSrp = () => {
+    dispatch(setEnteredSrp(['', '', '', '', '', '', '', '', '', '', '', '']));
+    dispatch(resetEnteredSrpIndex());
+  };
 
   const [phrasesMatch, setPhrasesMatch] = React.useState(false);
   //console.log(phrasesMatch + " - " + correctList + " - " + enteredSrp);
@@ -77,23 +88,22 @@ const SrpTestImpl: React.FC<SrpTestProps> = ({ shuffledList, correctList }) => {
           <SrpOutBadge numberOf={12} text={enteredSrp[11]} />
         </div>
       </div>
-      <Button
-        variant={phrasesMatch ? 'default' : 'disabled'}
-        size={'lg'}
-        className="mx-4"
-      >
-        Continue
-      </Button>
+      <Link to="/srpTestSuccess">
+        <Button
+          variant={phrasesMatch ? 'default' : 'disabled'}
+          size={'lg'}
+          className="mx-4"
+        >
+          Continue
+        </Button>
+      </Link>
+
       <Button
         variant={'link'}
         size={'lg'}
         className="mx-4 text-[#FFFFFF] text-base "
-        onClick={() => {
-          dispatch(
-            changeEnteredSrp(['', '', '', '', '', '', '', '', '', '', '', ''])
-          );
-          dispatch(resetEnteredSrpIndex());
-        }}
+        onClick={() => resetSrp}
+        onKeyDown={() => resetSrp}
       >
         Clear All
       </Button>

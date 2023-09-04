@@ -1,13 +1,13 @@
-import React from "react";
-import { useDrag } from "react-dnd";
-import { ItemTypes } from "./ItemTypes";
-import { useSelector, useDispatch } from "react-redux";
+import React from 'react';
+import { useDrag } from 'react-dnd';
+import { ItemTypes } from './ItemTypes';
+import { useSelector, useDispatch } from 'react-redux';
 import {
-  changeEnteredSrp,
+  setEnteredSrp,
   incrementEnteredSrpIndex,
-} from "@src/pages/Redux/SrpStateSlice";
-import { RootState } from "@src/pages/Redux/store";
-import { store } from "@src/pages/Redux/store";
+} from '@src/pages/Redux/SrpStateSlice';
+import { RootState } from '@src/pages/Redux/store';
+import { store } from '@src/pages/Redux/store';
 
 interface SrpTestBadgeProps {
   phrase: string;
@@ -32,9 +32,9 @@ const SrpInBadge: React.FC<SrpTestBadgeProps> = ({ phrase }) => {
           const newSrp = [...enteredSrp];
           // TODO: Add word to array
           newSrp[dropResult.num - 1] = item.phrase;
-          dispatch(changeEnteredSrp(newSrp));
+          dispatch(setEnteredSrp(newSrp));
           dispatch(incrementEnteredSrpIndex());
-          console.log(enteredSrp + " - " + newSrp);
+          console.log(enteredSrp + ' - ' + newSrp);
         }
       },
       collect: (monitor) => ({
