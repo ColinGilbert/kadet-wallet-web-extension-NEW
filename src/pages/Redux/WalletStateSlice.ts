@@ -22,7 +22,7 @@ const initialState: WalletState = {
   connectedSites: [],
 };
 
-export const srpStateSlice = createSlice({
+export const walletStateSlice = createSlice({
   name: 'WalletState',
   initialState,
   reducers: {
@@ -58,6 +58,6 @@ export const {
   setPublicKey,
   setSecretKey,
   setConnectedSites,
-} = srpStateSlice.actions;
+} = walletStateSlice.actions;
 
-export default srpStateSlice.reducer;
+export default walletStateSlice.reducer;
