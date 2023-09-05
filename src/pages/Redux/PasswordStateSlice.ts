@@ -1,35 +1,85 @@
-import { createSlice } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
+import type { PayloadAction } from '@reduxjs/toolkit';
 
 export interface PasswordState {
   password: string;
   confirmPassword: string;
   passwordsMatch: boolean;
+  showPassword: boolean;
+  passwordError: string;
+  confirmPasswordError: string;
+  isPasswordValidated: boolean;
+  isCheckboxChecked: boolean;
+  errorMessage: string;
 }
 
+// showPassword,
+// passwordError,
+// confirmPasswordError,
+// isPasswordValidated,
+// errorMessage,
+// setShowPassword,
+// setPasswordError,
+// setConfirmPasswordError,
+// setIsPasswordValidated,
+// setErrorMessage,
+
 const initialState: PasswordState = {
-  password: "",
-  confirmPassword: "",
+  password: '',
+  confirmPassword: '',
   passwordsMatch: false,
+  showPassword: false,
+  passwordError: '',
+  confirmPasswordError: '',
+  isPasswordValidated: false,
+  isCheckboxChecked: false,
+  errorMessage: '',
 };
 
 export const passwordStateSlice = createSlice({
-  name: "PasswordState",
+  name: 'PasswordState',
   initialState,
   reducers: {
-    changePassword: (state, action: PayloadAction<string>) => {
+    setPassword: (state, action: PayloadAction<string>) => {
       state.password = action.payload;
     },
-    changeConfirmPassword: (state, action: PayloadAction<string>) => {
+    setConfirmPassword: (state, action: PayloadAction<string>) => {
       state.confirmPassword = action.payload;
     },
     setPasswordsMatch: (state, action: PayloadAction<boolean>) => {
       state.passwordsMatch = action.payload;
     },
+    setShowPassword: (state, action: PayloadAction<boolean>) => {
+      state.showPassword = action.payload;
+    },
+    setPasswordError: (state, action: PayloadAction<string>) => {
+      state.passwordError = action.payload;
+    },
+    setConfirmPasswordError: (state, action: PayloadAction<string>) => {
+      state.confirmPasswordError = action.payload;
+    },
+    setIsPasswordValidated: (state, action: PayloadAction<boolean>) => {
+      state.isPasswordValidated = action.payload;
+    },
+    setIsCheckboxChecked: (state, action: PayloadAction<boolean>) => {
+      state.isCheckboxChecked = action.payload;
+    },
+    setErrorMessage: (state, action: PayloadAction<string>) => {
+      state.errorMessage = action.payload;
+    },
   },
 });
 
-export const { changePassword, changeConfirmPassword, setPasswordsMatch } =
-  passwordStateSlice.actions;
+export const {
+  setPassword,
+  setConfirmPassword,
+  setPasswordsMatch,
+  setShowPassword,
+  setPasswordError,
+  setConfirmPasswordError,
+  setIsPasswordValidated,
+  setIsCheckboxChecked,
+  setErrorMessage,
+} = passwordStateSlice.actions;
 
 export default passwordStateSlice.reducer;

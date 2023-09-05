@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   FormControl,
   InputLabel,
@@ -6,13 +6,22 @@ import {
   InputAdornment,
   IconButton,
   FormHelperText,
-} from "@mui/material";
-import { styled } from "@mui/system";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { object, string, TypeOf } from "zod";
-import { useForm, SubmitHandler } from "react-hook-form";
-import { usePasswordStore } from "@src/pages/popup/Store/Create/Store";
+} from '@mui/material';
+import { styled } from '@mui/system';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { object, string, TypeOf } from 'zod';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { usePasswordStore } from '@src/pages/popup/Store/Create/Store';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState, store } from '@src/pages/Redux/store';
+import {
+  setShowPassword,
+  setPasswordError,
+  setConfirmPasswordError,
+  setIsPasswordValidated,
+  setErrorMessage,
+} from '@src/pages/Redux/PasswordStateSlice';
 
 const CustomTextInput = styled(FormControl)`
   && {
@@ -102,32 +111,45 @@ interface CustomTextInputComponentProps {}
 const CustomTextInputComponent: React.FC<
   CustomTextInputComponentProps
 > = () => {
-  const {
-    showPassword,
-    passwordError,
-    confirmPasswordError,
-    isPasswordValidated,
-    errorMessage,
-    setShowPassword,
-    setPasswordError,
-    setConfirmPasswordError,
-    setIsPasswordValidated,
-    setErrorMessage,
-  } = usePasswordStore();
+  let showPassword = useSelector(
+    (state: RootState) => state.passwordState.showPassword
+  );
+  let passwordError = useSelector(
+    (state: RootState) => state.passwordState.passwordError
+  );
+  let confirmPasswordError = useSelector(
+    (state: RootState) => state.passwordState.confirmPasswordError
+  );
+  let isPasswordValidated = useSelector(
+    (state: RootState) => state.passwordState.isPasswordValidated
+  );
+  let errorMessage = useSelector(
+    (state: RootState) => state.passwordState.errorMessage
+  );
+
+  const unsubscribe = store.subscribe(() => {
+    showPassword = store.getState().passwordState.showPassword;
+    passwordError = store.getState().passwordState.passwordError;
+    confirmPasswordError = store.getState().passwordState.confirmPasswordError;
+    isPasswordValidated = store.getState().passwordState.isPasswordValidated;
+    errorMessage = store.getState().passwordState.errorMessage;
+  });
+
+  const dispatch = useDispatch();
 
   const PassSchema = object({
     password: string()
-      .min(8, " must be more than 8 characters")
-      .max(18, " must be less than 18 characters"),
-    passwordConfirm: string().min(1, "Please confirm your password"),
+      .min(8, ' must be more than 8 characters')
+      .max(18, ' must be less than 18 characters'),
+    passwordConfirm: string().min(1, 'Please confirm your password'),
   }).refine((data) => data.password === data.passwordConfirm, {
-    path: ["passwordConfirm"],
-    message: "Passwords do not match",
+    path: ['passwordConfirm'],
+    message: 'Passwords do not match',
   });
 
   const defaultValues: IPass = {
-    password: "",
-    passwordConfirm: "",
+    password: '',
+    passwordConfirm: '',
   };
 
   type IPass = TypeOf<typeof PassSchema>;
@@ -138,17 +160,17 @@ const CustomTextInputComponent: React.FC<
   });
 
   const handleClickShowPassword = () => {
-    setShowPassword(!showPassword);
-    setPasswordError("");
-    setConfirmPasswordError("");
+    dispatch(setShowPassword(!showPassword));
+    dispatch(setPasswordError(''));
+    dispatch(setConfirmPasswordError(''));
   };
 
   const handleMouseDownPassword = (
     event: React.MouseEvent<HTMLButtonElement>
   ) => {
     event.preventDefault();
-    setPasswordError("");
-    setConfirmPasswordError("");
+    dispatch(setPasswordError(''));
+    dispatch(setConfirmPasswordError(''));
   };
 
   // const onSubmit: SubmitHandler<IPass> = (data) => {
@@ -174,22 +196,22 @@ const CustomTextInputComponent: React.FC<
       if (
         methods.getValues().password !== methods.getValues().passwordConfirm
       ) {
-        setConfirmPasswordError("Passwords do not match");
-        setIsPasswordValidated(false);
+        dispatch(setConfirmPasswordError('Passwords do not match'));
+        dispatch(setIsPasswordValidated(false));
       } else {
-        setConfirmPasswordError("");
-        setIsPasswordValidated(true);
+        dispatch(setConfirmPasswordError(''));
+        dispatch(setIsPasswordValidated(true));
       }
     } else {
       const passwordErrors: any = methods.formState.errors?.password;
       if (passwordErrors) {
-        setPasswordError(passwordErrors.message);
-        setErrorMessage(passwordErrors.message);
-        setIsPasswordValidated(false);
+        dispatch(setPasswordError(passwordErrors.message));
+        dispatch(setErrorMessage(passwordErrors.message));
+        dispatch(setIsPasswordValidated(false));
       } else {
-        setPasswordError("");
-        setErrorMessage("Minimum 8 characters");
-        setIsPasswordValidated(false);
+        dispatch(setPasswordError(''));
+        dispatch(setErrorMessage('Minimum 8 characters'));
+        dispatch(setIsPasswordValidated(false));
       }
     }
   };
@@ -197,11 +219,11 @@ const CustomTextInputComponent: React.FC<
   const handleFocus = () => {
     handleBlur();
     if (methods.getValues().password !== methods.getValues().passwordConfirm) {
-      setConfirmPasswordError("Passwords do not match");
-      setIsPasswordValidated(false);
+      dispatch(setConfirmPasswordError('Passwords do not match'));
+      dispatch(setIsPasswordValidated(false));
     } else {
-      setConfirmPasswordError("");
-      setIsPasswordValidated(true);
+      dispatch(setConfirmPasswordError(''));
+      dispatch(setIsPasswordValidated(true));
     }
   };
 
@@ -210,7 +232,7 @@ const CustomTextInputComponent: React.FC<
       <FormControl
         variant="outlined"
         error={!!passwordError}
-        sx={{ marginTop: "16px" }}
+        sx={{ marginTop: '16px' }}
       >
         <CustomTextInput
           variant="outlined"
@@ -228,16 +250,16 @@ const CustomTextInputComponent: React.FC<
           <OutlinedInput
             id="outlined-adornment-password"
             size="small"
-            type={showPassword ? "text" : "password"}
+            type={showPassword ? 'text' : 'password'}
             inputProps={{
               style: {
-                fontFamily: "work sans",
-                fontSize: "18px",
-                fontWeight: "500",
-                letterSpacing: "0.14em",
+                fontFamily: 'work sans',
+                fontSize: '18px',
+                fontWeight: '500',
+                letterSpacing: '0.14em',
               },
-              autoComplete: "new-password",
-              inputMode: "decimal",
+              autoComplete: 'new-password',
+              inputMode: 'decimal',
             }}
             endAdornment={
               <InputAdornment position="end">
@@ -257,8 +279,8 @@ const CustomTextInputComponent: React.FC<
             onBlur={handleBlur}
             onFocus={handleFocus}
             onChange={(e) => {
-              methods.setValue("password", e.target.value);
-              methods.trigger("password");
+              methods.setValue('password', e.target.value);
+              methods.trigger('password');
             }}
           />
           <FormHelperText
@@ -266,8 +288,8 @@ const CustomTextInputComponent: React.FC<
             id="component-error-text"
             className={
               passwordError
-                ? "custom-helper-text custom-helper-text-error"
-                : "custom-helper-text"
+                ? 'custom-helper-text custom-helper-text-error'
+                : 'custom-helper-text'
             }
           >
             {passwordError || errorMessage}
@@ -278,7 +300,7 @@ const CustomTextInputComponent: React.FC<
       <FormControl
         variant="outlined"
         error={!!confirmPasswordError}
-        sx={{ marginTop: "40px" }}
+        sx={{ marginTop: '40px' }}
       >
         <CustomTextInput
           variant="outlined"
@@ -295,17 +317,17 @@ const CustomTextInputComponent: React.FC<
           </InputLabel>
           <OutlinedInput
             id="outlined-adornment-confirmPassword"
-            type={showPassword ? "text" : "password"}
+            type={showPassword ? 'text' : 'password'}
             size="small"
             inputProps={{
               style: {
-                fontFamily: "work sans",
-                fontSize: "18px",
-                fontWeight: "500",
-                letterSpacing: "0.14em",
+                fontFamily: 'work sans',
+                fontSize: '18px',
+                fontWeight: '500',
+                letterSpacing: '0.14em',
               },
-              autoComplete: "new-password",
-              inputMode: "decimal",
+              autoComplete: 'new-password',
+              inputMode: 'decimal',
             }}
             endAdornment={
               <InputAdornment position="end">
@@ -322,8 +344,8 @@ const CustomTextInputComponent: React.FC<
             }
             label="Confirm Password"
             onChange={(e) => {
-              methods.setValue("passwordConfirm", e.target.value);
-              methods.trigger("passwordConfirm");
+              methods.setValue('passwordConfirm', e.target.value);
+              methods.trigger('passwordConfirm');
             }}
             //disabled={!isPasswordValidated} // Disable initially
             onBlur={handleBlur} // Add onBlur event handler
@@ -334,8 +356,8 @@ const CustomTextInputComponent: React.FC<
             <FormHelperText
               className={
                 confirmPasswordError
-                  ? "custom-helper-text custom-helper-text-error"
-                  : "custom-helper-text"
+                  ? 'custom-helper-text custom-helper-text-error'
+                  : 'custom-helper-text'
               }
               error
             >

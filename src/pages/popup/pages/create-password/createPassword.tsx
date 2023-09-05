@@ -1,30 +1,50 @@
-import React, { FC, useState } from "react";
-import { Link } from "react-router-dom";
-import { usePasswordStore } from "@src/pages/popup/Store/Create/Store";
-import { Button } from "@/components/ui/button";
-import CustomTextInputComponent from "./passInput";
-import { Checkbox } from "@/components/ui/checkBox";
-import { ChevronLeftIcon } from "@radix-ui/react-icons";
-import HeaderLanding from "../../shared/Components/headerPassword";
-import { createStoredPassword } from "../../../../lib/utils";
+import React, { FC, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { usePasswordStore } from '@src/pages/popup/Store/Create/Store';
+import { Button } from '@/components/ui/button';
+import CustomTextInputComponent from './passInput';
+import { Checkbox } from '@/components/ui/checkBox';
+import { ChevronLeftIcon } from '@radix-ui/react-icons';
+import HeaderLanding from '../../shared/Components/headerPassword';
+import { createStoredPassword } from '../../../../lib/utils';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  setPassword,
+  setIsCheckboxChecked,
+} from '@src/pages/Redux/PasswordStateSlice';
+import { store, RootState } from '@src/pages/Redux/store';
+
 const CreatePassword: FC = () => {
-  const { isPasswordValidated, isCheckboxChecked, setCheckboxChecked } =
-    usePasswordStore();
-  const [formData, setFormData] = useState({
-    password: "",
-    confirmPassword: "",
+  let isPasswordValidated = useSelector(
+    (state: RootState) => state.passwordState.isPasswordValidated
+  );
+  let isCheckboxChecked = useSelector(
+    (state: RootState) => state.passwordState.isCheckboxChecked
+  );
+  let password = useSelector(
+    (state: RootState) => state.passwordState.password
+  );
+  const dispatch = useDispatch();
+  const unsubscribe = store.subscribe(() => {
+    password = store.getState().passwordState.password;
+    isPasswordValidated = store.getState().passwordState.isPasswordValidated;
+    isCheckboxChecked = store.getState().passwordState.isCheckboxChecked;
   });
+
+  // const [formData, setFormData] = useState({
+  //   password: '',
+  //   confirmPassword: '',
+  // });
 
   const handleFormSubmit = () => {
     if (isPasswordValidated && isCheckboxChecked) {
       // Save the validated password to local storage
       localStorage.setItem(
-        "userPassword",
-        JSON.stringify(createStoredPassword(formData.password))
+        'userPassword',
+        JSON.stringify(createStoredPassword(password))
       );
-
       // Form submission was successful
-      console.log("Form submitted successfully!");
+      console.log('Form submitted successfully!');
       // You can redirect the user to the next page or display a success message here
     }
   };
@@ -42,18 +62,18 @@ const CreatePassword: FC = () => {
 
       <div className="flex flex-row items-center justify-start gap-2 mb-20 ml-6 mr-24">
         <Checkbox
-          onCheckedChange={(e: boolean) => setCheckboxChecked(e)} // Update the state when the checkbox value changes
+          onCheckedChange={(e: boolean) => dispatch(setIsCheckboxChecked(e))} // Update the state when the checkbox value changes
           checked={isCheckboxChecked} // Set the checkbox value to the state
           className="shadow-[inset_0px_1px_1px_-1px_rgba(74,_74,_104,_0.1)] bg-[#f4f2ee] w-4 shrink-0 h-4 rounded"
         />
         <div className=" text-sm tracking-[0.56] text-white justify-start w-56">
           I agree to the
           <div className="text-sm  font-semibold tracking-[0.56] text-white contents">
-            {" "}
+            {' '}
           </div>
           <Button
             variant="link"
-            size={"sm"}
+            size={'sm'}
             className="text-sm font-medium tracking-[0.56] text-[#86d992] contents"
           >
             Terms of Service
@@ -64,10 +84,10 @@ const CreatePassword: FC = () => {
         <Link to="/srpIntro">
           <Button
             variant={
-              isPasswordValidated && isCheckboxChecked ? "default" : "disabled"
+              isPasswordValidated && isCheckboxChecked ? 'default' : 'disabled'
             }
             onClick={handleFormSubmit}
-            size={"lg"}
+            size={'lg'}
           >
             Create password
           </Button>
