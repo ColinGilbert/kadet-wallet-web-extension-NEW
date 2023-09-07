@@ -3,6 +3,8 @@ import { Button } from '@src/components/ui/button';
 import { createAccount } from '@src/lib/createAccount';
 import { useSelector } from 'react-redux';
 import { RootState, store } from '@src/pages/Redux/store';
+import { storedPasswordIndex } from '../../../../../utils/constants';
+import { createStoredPassword } from '@src/lib/utils';
 
 const SrpTestSuccess = () => {
   const [ready, setReady] = React.useState(false);
@@ -10,7 +12,9 @@ const SrpTestSuccess = () => {
   const correctSrp = useSelector(
     (state: RootState) => state.srpState.correctSrp
   );
-
+  const password = useSelector(
+    (state: RootState) => state.passwordState.password
+  );
   React.useEffect(() => {
     let success = false;
     const successPromise = createAccount(correctSrp.join(' '));
@@ -19,6 +23,14 @@ const SrpTestSuccess = () => {
       console.log(success);
       setReady(success);
       if (success === false) setError(true);
+      if (success) {
+        const storedPassword = createStoredPassword(password);
+        chrome.storage.local
+          .set({
+            storedPassword: JSON.stringify(storedPassword),
+          })
+          .then(() => console.log('Password is set.'));
+      }
     });
   }, []);
 

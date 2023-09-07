@@ -1,6 +1,5 @@
 import React, { FC, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { usePasswordStore } from '@src/pages/popup/Store/Create/Store';
 import { Button } from '@/components/ui/button';
 import CustomTextInputComponent from './passInput';
 import { Checkbox } from '@/components/ui/checkBox';
@@ -13,6 +12,7 @@ import {
   setIsCheckboxChecked,
 } from '@src/pages/Redux/PasswordStateSlice';
 import { store, RootState } from '@src/pages/Redux/store';
+import { storedPasswordIndex } from 'utils/constants';
 
 const CreatePassword: FC = () => {
   let isPasswordValidated = useSelector(
@@ -38,14 +38,9 @@ const CreatePassword: FC = () => {
 
   const handleFormSubmit = () => {
     if (isPasswordValidated && isCheckboxChecked) {
-      // Save the validated password to local storage
-      localStorage.setItem(
-        'userPassword',
-        JSON.stringify(createStoredPassword(password))
-      );
       // Form submission was successful
-      console.log('Form submitted successfully!');
       // You can redirect the user to the next page or display a success message here
+      console.log('Form submitted successfully!');
     }
   };
 

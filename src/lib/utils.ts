@@ -6,7 +6,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-class StoredPassword {
+export class StoredPassword {
   constructor(password: string) {
     this.salt = makeid(32);
     this.hashed = hash(this.salt + password);
@@ -38,9 +38,11 @@ export function comparePasswordToHash(
   password: string,
   storedPassword: StoredPassword
 ): boolean {
-  if (storedPassword.hashed === hash(storedPassword.salt + password))
+  if (storedPassword.hashed === hash(storedPassword.salt + password)) {
     return true;
-  else return false;
+  } else {
+    return false;
+  }
 }
 
 export const creationTime = () => Math.round(new Date().getTime() / 1000 - 15);

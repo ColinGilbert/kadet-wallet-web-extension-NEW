@@ -1,5 +1,6 @@
 import { HashRouter, Route, Routes } from 'react-router-dom';
-import CreateAccount from '../pages/createAccount/Index';
+import StartScreen from '../starting-screen';
+import Login from '@src/pages/popup/pages/login/login';
 // import CreatePassword from "../pages/create-password/create-password";
 // import HeaderLanding from "../shared/Components/header-Landing";
 import CreatePassword from '../pages/create-password/createPassword';
@@ -13,12 +14,14 @@ const Routers = () => {
   return (
     <HashRouter>
       <Routes>
-        <Route path="/" element={<CreateAccount />}></Route>
+        <Route path="/" element={<StartScreen />}></Route>
+        <Route path="/Login" element={<Login />}></Route>
         <Route path="/CreatePassword" element={<CreatePassword />}></Route>
         <Route path="/srpIntro" element={<SrpIntro />}></Route>
         <Route path="/Srp" element={<Srp />}></Route>
         <Route path="/SrpTest" element={<SrpTest />}></Route>
         <Route path="/srpTestSuccess" element={<SrpTestSuccess />}></Route>
+        {/* <Route path="/Dashboard" element={<Dashboard />}></Route> */}
       </Routes>
     </HashRouter>
   );

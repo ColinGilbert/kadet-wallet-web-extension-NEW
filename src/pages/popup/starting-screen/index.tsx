@@ -1,7 +1,7 @@
 // src/Components/CreateAccount/index.tsx
 import React from 'react';
-import Create from './create';
-import Import from './import';
+import Create from '../pages/createAccount/create';
+import Import from '../pages/createAccount/import';
 // import { ButtonDemo } from "../../shared/Components/shadenButton";
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
@@ -10,8 +10,8 @@ import Landing from '@src/assets/img/Landing.png';
 import { ReactComponent as Khelmet } from '@/assets/img/Khelmet.svg';
 import { ReactComponent as Klogo } from '@/assets/img/Klogo copy.svg';
 
-function CreateAccount() {
-  console.log('CreateAccount');
+function StartScreen() {
+  console.log('Starting Screen');
   return (
     <div className="overflow-hidden bg-[#101413] flex flex-col justify-end gap-1 w-full h-[600px] items-stretch px-4 pt-2 py-7">
       <div className="flex flex-row items-center self-center justify-start w-1/2 gap-3 mb-[1.3rem] ">
@@ -35,10 +35,27 @@ function CreateAccount() {
       </div>
 
       <Link
+        to="/Login"
+        // className="flex flex-col justify-center w-full "
+      >
+        <Button
+          variant="link"
+          size={'default'}
+          className="whitespace-nowrap text-base font-medium leading-[6px] text-[#86d992] "
+        >
+          Login
+        </Button>
+      </Link>
+
+      <Link
         to="/CreatePassword"
         // className="flex flex-col justify-center w-full "
       >
-        <Button variant="default" size={'lg'}>
+        <Button
+          variant="link"
+          size={'default'}
+          className="whitespace-nowrap text-base font-medium leading-[6px] text-[#86d992] "
+        >
           Create Wallet
         </Button>
       </Link>
@@ -50,7 +67,7 @@ function CreateAccount() {
         <Button
           variant="link"
           size={'default'}
-          className="whitespace-nowrap text-base font-medium leading-[20px] text-[#86d992] "
+          className="whitespace-nowrap text-base font-medium leading-[6px] text-[#86d992] "
         >
           Import Existing Wallet
         </Button>
@@ -59,4 +76,4 @@ function CreateAccount() {
   );
 }
 
-export default CreateAccount;
+export default StartScreen;
