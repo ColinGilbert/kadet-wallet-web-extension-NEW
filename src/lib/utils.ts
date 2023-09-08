@@ -1,6 +1,9 @@
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { hash } from '@kadena/cryptography-utils';
+import { encryptKey, decryptKey } from '../../utils/encrypt';
+import { store } from '@src/pages/Redux/store';
+import PasswordStateSlice from '@src/pages/Redux/PasswordStateSlice';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -46,3 +49,30 @@ export function comparePasswordToHash(
 }
 
 export const creationTime = () => Math.round(new Date().getTime() / 1000 - 15);
+
+export const encryptSRP = (SRP: string[]) => {
+  const password = store.getState().passwordState.password;
+  const encryptedSRP: string[] = [];
+  SRP.map((item) => encryptedSRP.push(encryptKey(item, password)));
+  return encryptedSRP;
+};
+
+export const decryptSRP = (encryptedSRP: string[]) => {
+  const password = store.getState().passwordState.password;
+  const decryptedSRP: string[] = [];
+  encryptedSRP.map((item) => decryptedSRP.push(decryptKey(item, password)));
+  return decryptedSRP;
+};
+
+export const getAccountInfo = () => {
+  const networkId = store.getState().networkState.networkId;
+  const chainId = store.getState().walletState.chainId;
+  const apiHost =
+    store.getState().networkState.url +
+    '/chainweb/0.0/' +
+    networkId +
+    '/chain/' +
+    chainId +
+    '/pact';
+  return { networkId, chainId, apiHost };
+};

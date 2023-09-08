@@ -13,17 +13,6 @@ export interface PasswordState {
   errorMessage: string;
 }
 
-// showPassword,
-// passwordError,
-// confirmPasswordError,
-// isPasswordValidated,
-// errorMessage,
-// setShowPassword,
-// setPasswordError,
-// setConfirmPasswordError,
-// setIsPasswordValidated,
-// setErrorMessage,
-
 const initialState: PasswordState = {
   password: '',
   confirmPassword: '',

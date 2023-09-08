@@ -3,8 +3,7 @@ import { Button } from '@src/components/ui/button';
 import { createAccount } from '@src/lib/createAccount';
 import { useSelector } from 'react-redux';
 import { RootState, store } from '@src/pages/Redux/store';
-import { storedPasswordIndex } from '../../../../../utils/constants';
-import { createStoredPassword } from '@src/lib/utils';
+import { createStoredPassword, encryptSRP } from '@src/lib/utils';
 
 const SrpTestSuccess = () => {
   const [ready, setReady] = React.useState(false);
@@ -30,6 +29,10 @@ const SrpTestSuccess = () => {
             storedPassword: JSON.stringify(storedPassword),
           })
           .then(() => console.log('Password is set.'));
+        const encryptedSRP = encryptSRP(correctSrp);
+        chrome.storage.local.set({
+          encryptedSRP: JSON.stringify(encryptedSRP),
+        });
       }
     });
   }, []);

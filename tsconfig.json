@@ -22,7 +22,7 @@
       "@pages/*": ["src/pages/*"],
       "@/*": ["./src/*"]
     },
-    "typeRoots": ["./typings", "./node_modules/@types/"]
+    "typeRoots": ["typings", "./node_modules/@types/"]
   },
   "include": ["src", "utils", "vite.config.ts"]
 }

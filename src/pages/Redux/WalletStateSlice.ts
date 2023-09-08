@@ -8,7 +8,7 @@ export interface WalletState {
   alias: string;
   publicKey: string;
   secretKey: string;
-  // wallets: RawWallet[];
+  // wallets: RawWallet[]; // TODO: Ask Hadi what this is all about...
   connectedSites: string[];
 }
 

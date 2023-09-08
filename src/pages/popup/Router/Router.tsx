@@ -8,7 +8,9 @@ import SrpIntro from '../pages/srpIntro/srpIntro';
 import Srp from '../pages/SRP/srp';
 import SrpTest from '../pages/SRPtest/srpTest';
 import SrpTestSuccess from '../pages/SRPtest/SRPTestSuccess';
-
+import Dashboard from '../pages/dashboard/dashboard';
+import Transfer from '../pages/transfer/transfer';
+import TransferCrossChain from '../pages/transfer-crosschain/transfer-crosschain';
 const Routers = () => {
   console.log('Router');
   return (
@@ -21,7 +23,12 @@ const Routers = () => {
         <Route path="/Srp" element={<Srp />}></Route>
         <Route path="/SrpTest" element={<SrpTest />}></Route>
         <Route path="/srpTestSuccess" element={<SrpTestSuccess />}></Route>
-        {/* <Route path="/Dashboard" element={<Dashboard />}></Route> */}
+        <Route path="/Dashboard" element={<Dashboard />}></Route>
+        <Route path="/Transfer" element={<Transfer />}></Route>
+        <Route
+          path="/TransferCrossChain"
+          element={<TransferCrossChain />}
+        ></Route>
       </Routes>
     </HashRouter>
   );

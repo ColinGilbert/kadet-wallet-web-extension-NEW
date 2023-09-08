@@ -2,19 +2,11 @@ import Pact from 'pact-lang-api';
 
 import { getKeysFromMnemonic } from './keys';
 import NetworkStateSlice from '@src/pages/Redux/NetworkStateSlice';
-import { creationTime } from './utils';
+import { creationTime, getAccountInfo } from './utils';
 import { store } from '@src/pages/Redux/store';
 
 export async function createAccount(mnemonic: string): Promise<boolean> {
-  const networkId = store.getState().networkState.networkId;
-  const chainId = store.getState().walletState.chainId;
-  const apiHost =
-    store.getState().networkState.url +
-    '/chainweb/0.0/' +
-    networkId +
-    '/chain/' +
-    chainId +
-    '/pact';
+  const { networkId, chainId, apiHost } = getAccountInfo();
 
   const keys = getKeysFromMnemonic(mnemonic);
   const newAccount = 'k:' + keys.publicKey;

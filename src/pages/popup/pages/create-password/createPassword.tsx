@@ -12,7 +12,6 @@ import {
   setIsCheckboxChecked,
 } from '@src/pages/Redux/PasswordStateSlice';
 import { store, RootState } from '@src/pages/Redux/store';
-import { storedPasswordIndex } from 'utils/constants';
 
 const CreatePassword: FC = () => {
   let isPasswordValidated = useSelector(

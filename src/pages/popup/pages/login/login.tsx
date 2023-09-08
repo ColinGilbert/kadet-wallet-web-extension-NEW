@@ -25,9 +25,8 @@ import { object, string, TypeOf } from 'zod';
 
 import { Link } from 'react-router-dom';
 import { Button } from '@src/components/ui/button';
-import { storedPasswordIndex } from '../../../../../utils/constants';
-import { hash } from '@kadena/cryptography-utils';
 import { comparePasswordToHash, StoredPassword } from '@src/lib/utils';
+
 const Login = () => {
   let password = useSelector(
     (state: RootState) => state.passwordState.password
@@ -178,7 +177,7 @@ const Login = () => {
           >
             {passwordError || errorMessage}
           </FormHelperText>
-          <Link to="/ashboard">
+          <Link to="/Dashboard">
             <Button
               variant={
                 isPasswordValidated && passwordValid ? 'default' : 'disabled'
