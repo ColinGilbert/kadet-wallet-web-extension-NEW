@@ -72,13 +72,8 @@ const Dashboard = () => {
         <p>Balance: {balance} KDA</p>
       </div>
       <div>
-        <Link to="/Transfer">
+        <Link to="/TransferInput">
           <Button>Transfer</Button>
-        </Link>
-      </div>
-      <div>
-        <Link to="/TransferCrossChain">
-          <Button>Crosschain Transfer</Button>
         </Link>
       </div>
     </div>
