@@ -61,7 +61,7 @@ function StartScreen() {
       </Link>
 
       <Link
-        to="/importWallet"
+        to="/ImportWallet"
         className="flex flex-col items-stretch justify-center w-full h-10 px-3 overflow-hidden "
       >
         <Button

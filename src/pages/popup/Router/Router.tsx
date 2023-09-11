@@ -3,7 +3,7 @@ import StartScreen from '../starting-screen';
 import Login from '@src/pages/popup/pages/login/login';
 // import CreatePassword from "../pages/create-password/create-password";
 // import HeaderLanding from "../shared/Components/header-Landing";
-import CreatePassword from '../pages/create-password/createPassword';
+import CreatePassword from '../pages/createPassword/createPassword';
 import SrpIntro from '../pages/srpIntro/srpIntro';
 import Srp from '../pages/SRP/srp';
 import SrpTest from '../pages/SRPtest/srpTest';
@@ -11,6 +11,8 @@ import SrpTestSuccess from '../pages/SRPtest/SRPTestSuccess';
 import Dashboard from '../pages/dashboard/dashboard';
 import TransferInput from '../pages/transfer/transferInput';
 import TransferInProgress from '../pages/transfer/transferInProgress';
+import ImportWallet from '../pages/importWallet/import';
+
 const Routers = () => {
   console.log('Router');
   return (
@@ -29,6 +31,7 @@ const Routers = () => {
           path="/TransferInProgress"
           element={<TransferInProgress />}
         ></Route>
+        <Route path="/ImportWallet" element={<ImportWallet />}></Route>
       </Routes>
     </HashRouter>
   );
