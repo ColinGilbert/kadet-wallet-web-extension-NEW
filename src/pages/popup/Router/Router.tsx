@@ -20,11 +20,18 @@ const Routers = () => {
       <Routes>
         <Route path="/" element={<StartScreen />}></Route>
         <Route path="/Login" element={<Login />}></Route>
-        <Route path="/CreatePassword" element={<CreatePassword />}></Route>
-        <Route path="/srpIntro" element={<SrpIntro />}></Route>
+        <Route
+          path="/CreatePasswordForSrpCreation"
+          element={<CreatePassword nextScreen="/SrpIntro" />}
+        ></Route>
+        <Route
+          path="/CreatePasswordForWalletImport"
+          element={<CreatePassword nextScreen="/ImportWallet" />}
+        ></Route>
+        <Route path="/SrpIntro" element={<SrpIntro />}></Route>
         <Route path="/Srp" element={<Srp />}></Route>
         <Route path="/SrpTest" element={<SrpTest />}></Route>
-        <Route path="/srpTestSuccess" element={<SrpTestSuccess />}></Route>
+        <Route path="/SrpTestSuccess" element={<SrpTestSuccess />}></Route>
         <Route path="/Dashboard" element={<Dashboard />}></Route>
         <Route path="/TransferInput" element={<TransferInput />}></Route>
         <Route

@@ -51,9 +51,11 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
         {...props}
-        onClick={variant === 'disabled' ? (e) => e.preventDefault() : (e) => {}}
+        onClick={
+          variant === 'disabled' ? (e) => e.preventDefault() : props.onClick
+        }
         onKeyDown={
-          variant === 'disabled' ? (e) => e.preventDefault() : (e) => {}
+          variant === 'disabled' ? (e) => e.preventDefault() : props.onKeyDown
         }
       />
     );

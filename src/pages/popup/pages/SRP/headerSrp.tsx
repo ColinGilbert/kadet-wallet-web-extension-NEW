@@ -1,13 +1,13 @@
-import React from "react";
-import { Button } from "@/components/ui/button";
-import { ChevronLeftIcon } from "@radix-ui/react-icons";
-import { Link } from "react-router-dom";
-import { ReactComponent as Khelmet } from "@/assets/img/Khelmet.svg";
+import React from 'react';
+import { Button } from '@/components/ui/button';
+import { ChevronLeftIcon } from '@radix-ui/react-icons';
+import { Link } from 'react-router-dom';
+import { ReactComponent as Khelmet } from '@/assets/img/Khelmet.svg';
 
 export const SrpHeader: React.FC = () => {
   return (
     <div className="bg-[#101413] flex flex-row justify-between w-full mb-[1.81rem] items-center pl-1 pr-4">
-      <Link to="/srpIntro">
+      <Link to="/SrpIntro">
         <Button
           size="icon"
           variant="ghost"

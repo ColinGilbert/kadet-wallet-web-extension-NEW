@@ -14,14 +14,13 @@ import {
   setPassword,
   setShowPassword,
   setPasswordError,
-  setConfirmPasswordError,
   setIsPasswordValidated,
   setErrorMessage,
 } from '@src/pages/Redux/PasswordStateSlice';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import { object, string, TypeOf } from 'zod';
+import { z } from 'zod';
 
 import { Link } from 'react-router-dom';
 import { Button } from '@src/components/ui/button';
@@ -56,8 +55,9 @@ const Login = () => {
     errorMessage = store.getState().passwordState.errorMessage;
   });
 
-  const PassSchema = object({
-    password: string()
+  const PassSchema = z.object({
+    password: z
+      .string()
       .min(8, ' Must be more than 8 characters')
       .max(18, ' Must be less than 18 characters'),
   });
@@ -66,7 +66,7 @@ const Login = () => {
     password: '',
   };
 
-  type IPass = TypeOf<typeof PassSchema>;
+  type IPass = z.TypeOf<typeof PassSchema>;
 
   const methods = useForm<IPass>({
     resolver: zodResolver(PassSchema),

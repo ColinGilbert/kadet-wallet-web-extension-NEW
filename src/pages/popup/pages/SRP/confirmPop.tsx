@@ -1,6 +1,6 @@
-import React from "react";
-import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 
 interface PopProps {
   visible: boolean;
@@ -29,7 +29,7 @@ const Pop: React.FC<PopProps> = ({ visible, onConfirm }) => {
               Yes
             </Button>
           </Link>
-          <Link to="/srp">
+          <Link to="/Srp">
             <Button
               variant="outline"
               size="sm"

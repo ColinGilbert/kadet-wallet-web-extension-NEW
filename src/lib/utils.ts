@@ -60,7 +60,9 @@ export const encryptSRP = (SRP: string[]) => {
 export const decryptSRP = (encryptedSRP: string[]) => {
   const password = store.getState().passwordState.password;
   const decryptedSRP: string[] = [];
-  encryptedSRP.map((item) => decryptedSRP.push(decryptKey(item, password)));
+  encryptedSRP.map((item) => {
+    decryptedSRP.push(decryptKey(item, password));
+  });
   return decryptedSRP;
 };
 

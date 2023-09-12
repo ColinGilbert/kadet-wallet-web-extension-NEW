@@ -41,10 +41,11 @@ const Dashboard = () => {
   });
 
   React.useEffect(() => {
-    let mnemonic: string[];
     chrome.storage.local.get(['encryptedSRP']).then((value) => {
-      console.log(value.encryptedSRP);
-      mnemonic = decryptSRP(JSON.parse(value.encryptedSRP));
+      console.log('Encrypted SRP: ' + value.encryptedSRP);
+      const parsedSRP: string[] = JSON.parse(value.encryptedSRP);
+      console.log(parsedSRP);
+      const mnemonic = decryptSRP(parsedSRP);
       console.log(mnemonic);
       const keys = getKeysFromMnemonic(mnemonic.join(' '));
       dispatch(setPublicKey(keys.publicKey));

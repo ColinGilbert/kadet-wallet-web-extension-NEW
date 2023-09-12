@@ -185,16 +185,6 @@ const Srp: React.FC = () => {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
-
-      {/* <Link to="/Pop">
-        <Button
-          variant={Hide ? "default" : "disabled"}
-          size="lg"
-          className="mx-4"
-        >
-          Confirm
-        </Button>
-      </Link> */}
     </div>
   );
 };

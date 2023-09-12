@@ -1,5 +1,5 @@
 import React from 'react';
-import { MenuItem, Select, SelectChangeEvent, TextField } from '@mui/material';
+import { MenuItem, Select, TextField } from '@mui/material';
 import CustomTextInput from '@src/components/ui/CustomTextInput';
 import { Button } from '@src/components/ui/button';
 
@@ -7,8 +7,7 @@ import { object, TypeOf, string } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState, store } from '@src/pages/Redux/store';
+import { useDispatch } from 'react-redux';
 import {
   setAmount,
   setReceiver,

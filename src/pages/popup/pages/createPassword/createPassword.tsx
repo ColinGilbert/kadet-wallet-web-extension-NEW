@@ -13,7 +13,11 @@ import {
 } from '@src/pages/Redux/PasswordStateSlice';
 import { store, RootState } from '@src/pages/Redux/store';
 
-const CreatePassword: FC = () => {
+interface ICreatePasswordProps {
+  nextScreen: string;
+}
+
+const CreatePassword: FC<ICreatePasswordProps> = ({ nextScreen }) => {
   let isPasswordValidated = useSelector(
     (state: RootState) => state.passwordState.isPasswordValidated
   );
@@ -75,7 +79,7 @@ const CreatePassword: FC = () => {
         </div>
       </div>
       <div className="flex flex-col items-stretch justify-start ml-4 overflow-hidden">
-        <Link to="/srpIntro">
+        <Link to={nextScreen}>
           <Button
             variant={
               isPasswordValidated && isCheckboxChecked ? 'default' : 'disabled'

@@ -48,7 +48,7 @@ function StartScreen() {
       </Link>
 
       <Link
-        to="/CreatePassword"
+        to="/CreatePasswordForSrpCreation"
         // className="flex flex-col justify-center w-full "
       >
         <Button
@@ -61,7 +61,7 @@ function StartScreen() {
       </Link>
 
       <Link
-        to="/ImportWallet"
+        to="/CreatePasswordForWalletImport"
         className="flex flex-col items-stretch justify-center w-full h-10 px-3 overflow-hidden "
       >
         <Button
