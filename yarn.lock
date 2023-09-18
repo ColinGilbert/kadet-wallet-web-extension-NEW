@@ -478,9 +478,9 @@
     node-fetch "~2.6.2"
 
 "@kadena/client@^1.2.0":
-  version "1.2.0"
-  resolved "https://registry.npmjs.org/@kadena/client/-/client-1.2.0.tgz"
-  integrity sha512-8DNJQJQBJofzYhGmkh9x7cPYaQOqIxGeODvGXsNQSAUNMe1d0q0XFLr40yD9kr7X4fDlRXBJ3nkTbSXIWEW5/w==
+  version "1.4.0"
+  resolved "https://registry.npmjs.org/@kadena/client/-/client-1.4.0.tgz"
+  integrity sha512-qoPuORQA/H/Z3VzB3yw6NTl01a2ygKVflcG+8O2UHXtoMPoZQZMj4hcLw8IHyHsJlNqTAsEsy1eS0RJXX1Zk3Q==
   dependencies:
     "@kadena/chainweb-node-client" "0.4.4"
     "@kadena/cryptography-utils" "0.3.8"
@@ -488,8 +488,6 @@
     "@walletconnect/sign-client" "~2.8.1"
     cross-fetch "~3.1.5"
     debug "~4.3.4"
-    encoding "~0.1.13"
-    yaml "~2.1.1"
 
 "@kadena/cryptography-utils@^0.3.8", "@kadena/cryptography-utils@0.3.8":
   version "0.3.8"
@@ -2651,7 +2649,7 @@ emoji-regex@^9.2.2:
   resolved "https://registry.npmjs.org/emoji-regex/-/emoji-regex-9.2.2.tgz"
   integrity sha512-L18DaJsXSUk2+42pv8mLs5jJT2hqFkFE4j21wOmgbUqsZ2hL72NsUU785g9RXgo3s0ZNgVl42TiHp3ZtOv/Vyg==
 
-encoding@^0.1.0, encoding@~0.1.13:
+encoding@^0.1.0:
   version "0.1.13"
   resolved "https://registry.npmjs.org/encoding/-/encoding-0.1.13.tgz"
   integrity sha512-ETBauow1T35Y/WZMkio9jiM0Z5xjHHmJ4XmjZOq1l/dXz3lr2sRn87nJy20RupqSh1F2m3HHPSp8ShIPQJrJ3A==
@@ -5591,11 +5589,6 @@ yaml@^2.1.1:
   version "2.3.1"
   resolved "https://registry.npmjs.org/yaml/-/yaml-2.3.1.tgz"
   integrity sha512-2eHWfjaoXgTBC2jNM1LRef62VQa0umtvRiDSk6HSzW7RvS5YtkabJrwYLLEKWBc8a5U2PTSCs+dJjUTJdlHsWQ==
-
-yaml@~2.1.1:
-  version "2.1.3"
-  resolved "https://registry.npmjs.org/yaml/-/yaml-2.1.3.tgz"
-  integrity sha512-AacA8nRULjKMX2DvWvOAdBZMOfQlypSFkjcOcu9FalllIDJ1kvlREzcdIZmidQUqqeMv7jorHjq2HlLv/+c2lg==
 
 yn@3.1.1:
   version "3.1.1"
