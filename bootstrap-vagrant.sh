@@ -1,10 +1,14 @@
 !/usr/bin/env bash
 
-apt update
-apt upgrade -y
-apt install docker.io -y
-apt install docker-compose -y
-curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash - &&\
-sudo apt-get install -y nodejs
-apt install npm -y
-docker pull kadena/devnet
+sudo apt update
+sudo apt upgrade -y
+sudo apt autoremove -y
+#apt install docker.io -y
+#apt install docker-compose -y
+wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+nvm install lts/hydrogen
+nvm use lts/hydrogen
+#docker pull kadena/devnet
