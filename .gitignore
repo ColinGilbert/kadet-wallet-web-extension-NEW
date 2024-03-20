@@ -391,3 +391,4 @@ public/manifest.json
 
 # Vagrant temp files
 .vagrant
+.nvmrc

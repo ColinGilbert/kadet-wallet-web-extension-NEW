@@ -6,9 +6,9 @@ import Import from '../pages/createAccount/import';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 // import Popover from "../../shared/Components/Popover";
-import Landing from '@src/assets/img/Landing.png';
-import { ReactComponent as Khelmet } from '@/assets/img/Khelmet.svg';
-import { ReactComponent as Klogo } from '@/assets/img/Klogo copy.svg';
+import Landing from '@/../public/images/Landing.png';
+import { ReactComponent as Khelmet } from '@/../public/images/Khelmet.svg';
+import { ReactComponent as Klogo } from '@/../public/images/Klogo copy.svg';
 
 function StartScreen() {
   console.log('Starting Screen');

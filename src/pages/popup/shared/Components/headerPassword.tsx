@@ -1,8 +1,8 @@
 import react from "react";
 import { ChevronLeftIcon } from "@radix-ui/react-icons";
 
-import { ReactComponent as Khelmet } from "@/assets/img/Khelmet.svg";
-import { ReactComponent as Klogo } from "@/assets/img/Klogo copy.svg";
+import { ReactComponent as Khelmet } from "@/../public/images/Khelmet.svg";
+import { ReactComponent as Klogo } from "@/../public/images/Klogo copy.svg";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 

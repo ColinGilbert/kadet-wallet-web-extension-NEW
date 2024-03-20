@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { ChevronLeftIcon } from "@radix-ui/react-icons";
 import { Link } from "react-router-dom";
-import { ReactComponent as Khelmet } from "@/assets/img/Khelmet.svg";
+import { ReactComponent as Khelmet } from "@/../public/images/Khelmet.svg";
 
 export const SrpHeader: React.FC = () => {
   return (
