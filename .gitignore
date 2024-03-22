@@ -392,3 +392,6 @@ public/manifest.json
 # Vagrant temp files
 .vagrant
 .nvmrc
+
+# Vim swap files
+**/.*.sw*
