@@ -1,3 +1,5 @@
+// Code commented out but kept for potential usefulness. Hadi could help explain it.
+/*
 import BigNumber from "bignumber.js";
 import { KNOWN_TOKENS } from "./constant";
 
@@ -115,3 +117,4 @@ export const toFixedDown = (num, fixed) => {
 };
 
 export const delay = (ms) => new Promise((res) => setTimeout(res, ms));
+*/

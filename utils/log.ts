@@ -1,3 +1,4 @@
+// This file is necessary for Vite to pick up
 type ColorType = "success" | "info" | "error" | "warning" | keyof typeof COLORS;
 
 export default function colorLog(message: string, type?: ColorType) {

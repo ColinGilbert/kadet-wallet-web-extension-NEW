@@ -1,3 +1,4 @@
+/*
 import images from '@assets/img/index';
 
 export const OptionSelect = {
@@ -146,3 +147,4 @@ export const CHAIN_AVAILABLE_TOKENS_FIXTURE = [
   baseTokenList,
   baseTokenList,
 ];
+*/

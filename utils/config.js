@@ -1,3 +1,4 @@
+/*
 const X_CHAIN_GAS_STATION = "xwallet-xchain-gas";
 const X_CHAIN_GAS_PRICE = 0.00000001;
 const X_CHAIN_GAS_LIMIT = 1100;
@@ -59,3 +60,4 @@ export const autoLockOptions = [
 export const WALLET_CONNECT_SIGN_METHOD = "kadena_sign_v1";
 export const WALLET_CONNECT_QUICKSIGN_METHOD = "kadena_quicksign_v1";
 export const WALLET_CONNECT_GET_ACCOUNTS_METHOD = "kadena_getAccounts_v1";
+*/

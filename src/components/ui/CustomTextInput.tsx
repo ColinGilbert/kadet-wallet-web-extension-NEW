@@ -1,5 +1,5 @@
 import { styled } from '@mui/system';
-import { FormControl } from '@mui/material';
+import FormControl  from '@mui/material/FormControl';
 
 const CustomTextInput = styled(FormControl)`
   && {

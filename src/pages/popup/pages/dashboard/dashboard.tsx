@@ -50,9 +50,9 @@ const Dashboard = () => {
       const keys = getKeysFromMnemonic(mnemonic.join(' '));
       dispatch(setPublicKey(keys.publicKey));
       dispatch(setSecretKey(keys.secretKey as string));
-      console.log(
-        keys.publicKey + ' ' + keys.publicKey.length + ' ' + keys.secretKey
-      );
+    //  console.log(
+    //    keys.publicKey + ' ' + keys.publicKey.length + ' ' + keys.secretKey
+    //  );
       let newBalance = 0;
       getBalance(publicKey, secretKey).then((value) => {
         newBalance = value;
