@@ -33,7 +33,6 @@ function StartScreen() {
           <img src={Landing} alt="Kadet Landing"></img>
         </div>
       </div>
-
       <Link
         to="/Login"
         // className="flex flex-col justify-center w-full "
@@ -62,7 +61,7 @@ function StartScreen() {
 
       <Link
         to="/CreatePasswordForWalletImport"
-        className="flex flex-col items-stretch justify-center w-full h-10 px-3 overflow-hidden "
+        //className="flex flex-col items-stretch justify-center w-full h-10 px-3 overflow-hidden "
       >
         <Button
           variant="link"

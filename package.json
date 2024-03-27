@@ -6,7 +6,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/techfleetworks/kadet-wallet-web-extension-NEW"
+    "url": "https://github.com/colingilbert/kadet-wallet-web-extension-NEW"
   },
   "scripts": {
     "build": "vite build",

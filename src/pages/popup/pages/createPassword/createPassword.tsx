@@ -12,6 +12,7 @@ import {
   setIsCheckboxChecked,
 } from '@src/pages/Redux/PasswordStateSlice';
 import { store, RootState } from '@src/pages/Redux/store';
+import { createStoredPassword} from '@src/lib/utils'
 
 interface ICreatePasswordProps {
   nextScreen: string;
@@ -34,16 +35,15 @@ const CreatePassword: FC<ICreatePasswordProps> = ({ nextScreen }) => {
     isCheckboxChecked = store.getState().passwordState.isCheckboxChecked;
   });
 
-  // const [formData, setFormData] = useState({
-  //   password: '',
-  //   confirmPassword: '',
-  // });
-
   const handleFormSubmit = () => {
     if (isPasswordValidated && isCheckboxChecked) {
       // Form submission was successful
       // You can redirect the user to the next page or display a success message here
-      console.log('Form submitted successfully!');
+      // console.log('Form submitted successfully!');
+      // TODO: Store salt+hash in storage
+      const storedPass = createStoredPassword(password);
+      chrome.storage.local.set({ storedPassword: JSON.stringify(storedPass) })
+      console.log("storedPassword set")
     }
   };
 

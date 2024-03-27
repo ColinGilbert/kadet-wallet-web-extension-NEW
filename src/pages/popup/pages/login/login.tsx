@@ -58,8 +58,8 @@ const Login = () => {
   const PassSchema = z.object({
     password: z
       .string()
-      .min(8, ' Must be more than 8 characters')
-      .max(18, ' Must be less than 18 characters'),
+      .min(8, ' Must be 8 characters or more')
+      .max(18, ' Must be 18 or fewer characters'),
   });
 
   const defaultValues: IPass = {
